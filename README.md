@@ -5,10 +5,12 @@
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
 | email              | string              | null: false             |
-| password           | string              | null: false             |
+| encrypted_password | string              | null: false             |
 | name               | string              | null: false             |
 | last_name          | string              | null: false             |
 | first_name         | string              | null: false             |
+| 苗字_フリガナ        | string              | null: false             |
+| 名前_フリガナ        | string              | null: false             |
 
 ### Association
 
@@ -20,14 +22,13 @@
 | Column                         | Type       | Options              |
 |--------------------------------|------------|----------------------|
 | title                          | string     | null: false          |
-| category                       | string     | null: false          |
-| price                          | string     | null: false          |
+| price                          | integer    | null: false          |
 | user                           | references | foreign_key: true    |
-| category                       | string     | null: false          |
-| condition                      | text       | null: false          |
-| delivery_fee                   | string     | null: false          |
-| shipment_area                  | string     | null: false          |
-| shipment_date                  | string     | null: false          |
+| category_id                    | string     | null: false       |
+| condition_id                   | integer    | null: false          |
+| delivery_fee_id                | integer    | null: false          |
+| shipment_area_id               | integer    | null: false          |
+| shipment_date_id               | integer    | null: false          |
 | image                          | Active Storage                    |
 
 
@@ -40,10 +41,7 @@
 
 | Column        | Type       | Options           |
 |---------------|------------|-------------------|
-| price         | string     | null: false       |
-| card_number   | string     | null: false       |
-| expiration    | integer    | null: false       |
-| security      | integer    | null: false       |
+| price         | integer    | null: false       |
 | PostalCode    | integer    | null: false       |
 | Prefectures   | string     | null: false       |
 | security      | integer    | null: false       |
