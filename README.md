@@ -1,24 +1,60 @@
-# README
+# DB 設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column             | Type                | Options                 |
+|--------------------|---------------------|-------------------------|
+| email              | string              | null: false             |
+| password           | string              | null: false             |
+| name               | string              | null: false             |
+| last_name          | string              | null: false             |
+| first_name         | string              | null: false             |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_one  :order
 
-* Configuration
+## items table
 
-* Database creation
+| Column                         | Type       | Options              |
+|--------------------------------|------------|----------------------|
+| title                          | string     | null: false          |
+| category                       | string     | null: false          |
+| price                          | string     | null: false          |
+| user                           | references | foreign_key: true    |
+| category                       | string     | null: false          |
+| condition                      | text       | null: false          |
+| delivery_fee                   | string     | null: false          |
+| shipment_area                  | string     | null: false          |
+| shipment_date                  | string     | null: false          |
+| image                          | Active Storage                    |
 
-* Database initialization
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- has_one :order
 
-* Deployment instructions
+## orders table
 
-* ...
+| Column        | Type       | Options           |
+|---------------|------------|-------------------|
+| price         | string     | null: false       |
+| card_number   | string     | null: false       |
+| expiration    | integer    | null: false       |
+| security      | integer    | null: false       |
+| PostalCode    | integer    | null: false       |
+| Prefectures   | string     | null: false       |
+| security      | integer    | null: false       |
+| city          | string     | null: false       |
+| streetAddress | string     | null: false       |
+| building      | string     | null: false       |
+| phone         | string     | null: false       |
+| image         |         Active Storage         |
+
+### Association
+
+- belongs_to :item
+- belongs_to :user
+
