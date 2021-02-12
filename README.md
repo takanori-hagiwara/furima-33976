@@ -42,19 +42,21 @@
 
 ## addresses table 
 
-| Column        | Type           | Options      |
-|---------------|----------------|--------------|
-| PostalCode    | string         | null: false  |
-| Prefectures   | string         | null: false  |
-| city          | string         | null: false  |
-| streetAddress | string         | null: false  |
-| phone         | string         | null: false  |
+| Column         | Type           | Options      |
+|----------------|----------------|--------------|
+| postalCode     | string         | null: false  |
+| prefectures    | string         | null: false  |
+| city           | string         | null: false  |
+| street_address | string         | null: false  |
+| building       | string         |              |
+| phone          | string         | null: false  |
 
 
 ### Association
 
 - belongs_to :item
 - belongs_to :user
+- belongs_to :order
 
 ## order table
 
@@ -66,5 +68,4 @@
 
 ### Association
 
-- belongs_to :item
-- belongs_to :user
+- belongs_to : address
