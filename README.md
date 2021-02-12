@@ -39,15 +39,15 @@
 
 ## addresses table 
 
-| Column         | Type           | Options              |
-|----------------|----------------|----------------------|
-| postal_code    | string         | null: false          |
-| prefectures    | integer        | null: false          |
-| city           | integer        | null: false          |
-| street_address | string         | null: false          |
-| building       | string         |                      |
-| phone          | string         | null: false          |
-| order          | references     | foreign_key: true    | 
+| Column          | Type           | Options              |
+|-----------------|----------------|----------------------|
+| postal_code     | string         | null: false          |
+| shipment_area_id| integer        | null: false          |
+| city            | string         | null: false          |
+| street_address  | string         | null: false          |
+| building        | string         |                      |
+| phone           | string         | null: false          |
+| order           | references     | foreign_key: true    | 
 
 
 ### Association
@@ -59,8 +59,10 @@
 | Column               | Type       | Options                        |
 |----------------------|------------|--------------------------------|
 | user                 | references | null: false, foreign_key: true |
-| item              | references | null: false, foreign_key: true |
+| item          xxx    | references | null: false, foreign_key: true |
 
 ### Association
 
 - has_one : address
+- belongs_to :user
+- belongs_to :item
