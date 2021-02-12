@@ -39,27 +39,27 @@
 
 ## addresses table 
 
-| Column         | Type           | Options      |
-|----------------|----------------|--------------|
-| postalCode     | string         | null: false  |
-| prefectures    | integer        | null: false  |
-| city           | string         | null: false  |
-| street_address | string         | null: false  |
-| building       | string         |              |
-| phone          | string         | null: false  |
+| Column         | Type           | Options              |
+|----------------|----------------|----------------------|
+| postal_code    | string         | null: false          |
+| prefectures    | integer        | null: false          |
+| city           | integer        | null: false          |
+| street_address | string         | null: false          |
+| building       | string         |                      |
+| phone          | string         | null: false          |
+| order          | references     | foreign_key: true    | 
 
 
 ### Association
 
 - belongs_to :order
 
-## order table
+## orders table
 
 | Column               | Type       | Options                        |
 |----------------------|------------|--------------------------------|
 | user                 | references | null: false, foreign_key: true |
-| item                 | references | null: false, foreign_key: true |
-| address              | references | null: false, foreign_key: true |
+| item              | references | null: false, foreign_key: true |
 
 ### Association
 
