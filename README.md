@@ -11,12 +11,12 @@
 | first_name         | string              | null: false              |
 | last_furigana      | string              | null: false              |
 | first_furigana     | string              | null: false              |
-| birth_date         | integer              | null: false              |
+| birth_date         | date                | null: false              |
 
 ### Association
 
 - has_many  :items
-- has_many  :order
+- has_many  :orders
 
 ## items table
 
@@ -42,7 +42,7 @@
 | Column         | Type           | Options      |
 |----------------|----------------|--------------|
 | postalCode     | string         | null: false  |
-| prefectures    | string         | null: false  |
+| prefectures    | integer        | null: false  |
 | city           | string         | null: false  |
 | street_address | string         | null: false  |
 | building       | string         |              |
@@ -51,8 +51,6 @@
 
 ### Association
 
-- belongs_to :item
-- belongs_to :user
 - belongs_to :order
 
 ## order table
@@ -61,8 +59,8 @@
 |----------------------|------------|--------------------------------|
 | user                 | references | null: false, foreign_key: true |
 | item                 | references | null: false, foreign_key: true |
-
+| address              | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to : address
+- has_one : address
