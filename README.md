@@ -11,12 +11,12 @@
 | first_name         | string              | null: false              |
 | last_furigana      | string              | null: false              |
 | first_furigana     | string              | null: false              |
+| birth_date         | integer              | null: false              |
 
 ### Association
 
-- has_many  :item 
-- has_one  :address
-- has_one  :order
+- has_many  :items
+- has_many  :order
 
 ## items table
 
@@ -24,7 +24,7 @@
 |--------------------------------|------------|----------------------|
 | title                          | string     | null: false          |
 | price                          | integer    | null: false          |
-| description                    | string     | null: false          |
+| description                    | text       | null: false          |
 | user                           | references | foreign_key: true    |
 | category_id                    | integer    | null: false          |
 | condition_id                   | integer    | null: false          |
@@ -32,13 +32,10 @@
 | shipment_area_id               | integer    | null: false          |
 | shipment_date_id               | integer    | null: false          |
 
-
-
 ### Association
 
 - belongs_to :user
 - has_one : order
-- has_one : address
 
 ## addresses table 
 
