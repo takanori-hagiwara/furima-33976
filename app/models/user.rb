@@ -11,5 +11,5 @@ class User < ApplicationRecord
          validates :last_furigana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
          validates :first_furigana, presence: true, format: { with: /\A[ァ-ヶー－]+\z/}
          validates :birth_date, presence: true
-         
-end
+
+        end
