@@ -1,16 +1,22 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+    # Include default devise modules. Others available are:
+   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-        
-        with_options presence: true do
+         
+      with_options presence: true do
          validates :password, format: { with: /\A[a-z0-9]+\z/}
          validates :name
-         validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/}
-         validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/}
-         validates :last_furigana, format: { with: /\A[ァ-ヶー－]+\z/}
-         validates :first_furigana,  format: { with: /\A[ァ-ヶー－]+\z/}
          validates :birth_date
-        end
       end
+    
+      with_options  presence: true, format: { with: /\A(?:\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+\z/} do
+         validates :last_name 
+         validates :first_name
+      end
+    
+      with_options format: { with: /\A[ァ-ヶー－]+\z/} do
+        validates :last_furigana
+        validates :first_furigana
+      end
+end
