@@ -22,10 +22,10 @@
 
 | Column                         | Type       | Options              |
 |--------------------------------|------------|----------------------|
+| user                           | references | foreign_key: true    |
 | title                          | string     | null: false          |
 | price                          | integer    | null: false          |
 | description                    | text       | null: false          |
-| user                           | references | foreign_key: true    |
 | category_id                    | integer    | null: false          |
 | condition_id                   | integer    | null: false          |
 | delivery_fee_id                | integer    | null: false          |
@@ -59,7 +59,7 @@
 | Column               | Type       | Options                        |
 |----------------------|------------|--------------------------------|
 | user                 | references | null: false, foreign_key: true |
-| item          xxx    | references | null: false, foreign_key: true |
+| item                 | references | null: false, foreign_key: true |
 
 ### Association
 
