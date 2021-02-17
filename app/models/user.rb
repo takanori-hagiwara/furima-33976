@@ -15,7 +15,7 @@ class User < ApplicationRecord
          validates :first_name
       end
     
-      with_options format: { with: /\A[\p{katakana}\u{30fc}]+\z/} do
+      with_options presence: true, format: { with: /\A[\p{katakana}\u{30fc}]+\z/} do
         validates :last_furigana
         validates :first_furigana
       end
