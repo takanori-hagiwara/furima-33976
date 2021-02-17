@@ -101,9 +101,29 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
     end
    
-    it "passwordは半角英数字でなければ登録できないこと" do
+    it "passwordは全角の場合は登録できないこと" do
+      @user.password = "１２３４５A"
+      @user.password_confirmation = "１２３４５A"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+    it "passwordが全角の場合は登録できないこと" do
+      @user.password = "１２３４５A"
+      @user.password_confirmation = "１２３４５A"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+
+    it "passwordが半角数字のみの場合は登録できないこと" do
       @user.password = "123456"
       @user.password_confirmation = "123456"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is invalid")
+    end
+
+    it "passwordが半角英字のみの場合は登録できないこと" do
+      @user.password = "abcdef"
+      @user.password_confirmation = "abcdef"
       @user.valid?
       expect(@user.errors.full_messages).to include("Password is invalid")
     end
@@ -130,6 +150,18 @@ RSpec.describe User, type: :model do
       @user.first_name = ''
       @user.valid?
       expect(@user.errors.full_messages).to include("First name can't be blank")
+    end
+    
+    it "last_furiganaが空では登録できないこと" do
+      @user.last_furigana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last furigana is invalid")
+    end
+
+    it "first_furiganaが空では登録できないこと" do
+      @user.first_furigana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First furigana is invalid")
     end
 
     it "last_furiganaがカタカナでなければ登録できないこと" do
