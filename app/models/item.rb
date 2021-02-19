@@ -8,8 +8,10 @@ class Item < ApplicationRecord
        has_one_attached :image
 
        with_options presence: true do
-        validates :category
-        validates :condition
+        validates :title
+        validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
+        validates :description
+        validates :image
        end
 
        with_options numericality: { other_than: 1 } do
