@@ -11,11 +11,11 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
       it "商品価格が300円以上であれば出品できる" do
-        @item.price = "300"
+        @item.price = 300
         expect(@item).to be_valid
       end
       it "商品価格が9999999円以下であれば出品できる" do
-        @item.price = "9999999"
+        @item.price = 9999999
         expect(@item).to be_valid
       end
     end
@@ -37,24 +37,24 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end 
       it "カテゴリー情報が空では出品を保存できない" do
-        @item.category_id = ""
+        @item.category_id = 1 
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category is not a number")
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end 
       it "商品の状態についての情報が空では出品を保存できない" do
-        @item.condition_id = ""
+        @item.condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Condition is not a number")
+        expect(@item.errors.full_messages).to include("Condition must be other than 1")
       end 
       it "配送料の負担についての情報が空では出品を保存できない" do
-        @item.delivery_fee_id = ""
+        @item.delivery_fee_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee is not a number")
+        expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
       end 
       it "発送元の情報が空では出品を保存できない" do
-        @item.shipment_area_id = ""
+        @item.shipment_area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipment area is not a number")
+        expect(@item.errors.full_messages).to include("Shipment area must be other than 1")
       end 
       it "発送までの日数についての情報が空では出品を保存できない" do
         @item.shipment_date_id = ""
@@ -67,12 +67,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price is not a number")
       end 
       it "商品価格が300円以下では出品を保存できない" do
-        @item.price = "299"
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end 
       it "商品価格が9999999円以上では出品を保存できない" do
-        @item.price = "10000000"
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
