@@ -36,7 +36,6 @@ class OrdersController < ApplicationController
   end
 
   def contributor_confirmation
-    @item = Item.find(params[:item_id])
     redirect_to root_path if current_user == @item.user || @item.order != nil
   end
 
