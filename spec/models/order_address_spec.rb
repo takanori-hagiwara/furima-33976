@@ -13,9 +13,29 @@ RSpec.describe OrderAddress, type: :model do
       it "'すべての値が正しく入力されていれば保存できること'" do
         expect(@order_address).to be_valid
       end
+
+      it 'buildingが空でも登録できる' do
+        @order_address.building = ''
+        expect(@order_address).to be_valid
+      end
     end
 
+  
+
     context '商品が購入できない場合' do
+
+      it 'user_idが空では購入できない' do
+        @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空では購入できない' do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Item can't be blank")
+      end
+
       it 'cityが空では購入できない' do
         @order_address.city = ''
         @order_address.valid?
@@ -54,6 +74,12 @@ RSpec.describe OrderAddress, type: :model do
 
       it 'phoneは11桁以内でないと購入できない' do
         @order_address.phone = '1234567891011'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone is invalid')
+      end
+
+      it 'phoneは英数字混合だと購入できない' do
+        @order_address.phone = 'abcde123456'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include('Phone is invalid')
       end
