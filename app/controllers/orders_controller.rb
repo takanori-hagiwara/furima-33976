@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user! 
   before_action :contributor_confirmation
 
   def index
@@ -38,6 +38,6 @@ class OrdersController < ApplicationController
 
   def contributor_confirmation
     @item = Item.find(params[:item_id])
-    redirect_to root_path if current_user == @item.user
+    redirect_to root_path if current_user == @item.user || @item.order != nil
   end
 end
